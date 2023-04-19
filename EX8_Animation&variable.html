@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex8. Animation & variable</title>
+</head>
+<style>
+    .wrapper{
+        background-color: rgb(181, 172, 172);
+        width: 500px;
+        height: 400px;
+        display: flex;
+        position: absolute;
+        top: 50%;
+        right: 50%;  
+        line-height: 400px; 
+        transform: translate(50%, -50%);
+    }
+    .drop{
+        /* transform: translateY(-100vh); */
+        animation: dropAnim 800ms linear forwards calc(var(--order)*200ms);
+        padding-left: 110px;
+    }
+
+    @keyframes dropAnim{
+        from {
+            visibility: hidden;
+            transform: translateY(-100vh);
+        }
+        to {
+            visibility: visible;
+            transform: translateY(0%);
+        }
+    }
+</style>
+<body>
+    <div class="wrapper">
+        <span class="drop" style="--order: 1">🥳</span>
+        <span class="drop" style="--order: 2">😜</span>
+        <span class="drop" style="--order: 3">🤩</span>
+    </div>
+</body>
+</html>

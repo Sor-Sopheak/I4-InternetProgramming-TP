@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex1. Basic Layout</title>
+
+    <style>
+        .wrapper{
+            border-style: solid ;
+            width: 500px;
+            height: 410px;
+            display: grid;
+            grid-template-columns: 110px 130px 130px 130px;
+            grid-template-rows: 120px 150px 140px;
+            grid-template-areas:
+                "red gray gray gray"
+                "green blue pink yellow"
+                "purple blue pink yellow";
+                position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -205px;     
+            margin-left: -250px;
+        }
+    
+        .red{
+            background-color: rgb(244, 82, 71);
+        }
+        .green{
+            background-color: rgb(72, 177, 72);
+        }
+        .purple{
+            background-color: rgba(197, 94, 248, 0.879);
+        }
+        .gray{
+            background-color: rgb(164, 154, 154);
+            grid-area: gray;
+        }
+        .blue{
+            background-color: rgb(74, 109, 224);
+            grid-area: blue;
+        }
+        .pink{
+            background-color: rgb(217, 121, 137);
+            grid-area: pink;
+        }
+        .yellow{
+            background-color: rgb(214, 214, 49);
+            grid-area: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="red"></div>
+        <div class="green"></div>
+        <div class="purple"></div>        
+        <div class="gray"></div>
+        <div class="blue"></div>
+        <div class="pink"></div>
+        <div class="yellow"></div>        
+    </div>
+</body>
+</html>

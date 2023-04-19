@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ex6. Responsive</title>
+    <style>
+        /* body{
+            width: 100%;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        } */
+        .wrappper{
+            width: 800px;
+            height: 520px;
+            background-color: rgb(72, 73, 67);
+            align-items: center;
+            display: flex;
+            justify-content: center;
+        }
+        .big{
+            background-color: rgb(117, 227, 58);
+            color: white;
+            font-size: 40px;
+            width: 220px;
+            height: 70px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            text-align: center;
+            line-height: 70px;
+            transform: translate(-50%, -50%);
+            border-radius: 3px;
+        }
+        .small{
+            background-color: rgb(198, 80, 80);
+            color: white;
+            font-size: 30px;
+            width: 220px;
+            height: 70px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            text-align: center;
+            line-height: 70px;
+            transform: translate(-50%, -50%);
+            border-radius: 3px;
+            display: none;
+        }
+        
+        @media only screen and (max-width: 350px){
+            .big{
+                display: none;
+            }
+            .small{
+                display: block;
+            }
+        }
+        
+    
+        
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <span class="small">I'm SMALL 😥</span>
+            <span class="big">I'm BIG 😱</span>
+        </div>
+    </div>
+</body>
+</html>

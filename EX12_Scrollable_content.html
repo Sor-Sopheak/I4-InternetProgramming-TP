@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container{
+        width: 50%;
+        border: .2vw solid black;
+        aspect-ratio: 2/1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .sub_container{
+        width: 90%;
+        aspect-ratio: 2/1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 3vw;
+    }
+    .sub_container>div{
+        width: 100%;
+        height: 100%;
+    }
+    .I{
+        background-color: rgb(190, 52, 52);
+        flex: .5;
+    }
+    .T{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 2;
+    }
+    .T>div{
+        background-color: aqua;
+    }
+    .T_head{
+        height: 20%;
+        width: 100%;
+    }
+    .T_body{
+        width: 25%;
+        height: 87%;
+    }
+    
+    .C{
+        height: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        flex: 1;
+    }
+    .C>div{
+        width: 100%;
+        background-color: black;
+    }
+    .C_head, .C_leg{
+        width: 100% !important;
+        height: 25%;
+    }
+    .C_body{
+        width: 35% !important;
+        height: 100%;
+    }
+
+</style>
+<body>
+    <div class="container">
+        <div class="sub_container">
+            <div class="I"></div>
+            <div class="T">
+                <div class="T_head"></div>
+                <div class="T_body"></div>
+            </div>
+            <div class="C">
+                <div class="C_head"></div>
+                <div class="C_body"></div>
+                <div class="C_leg"></div>
+            </div>
+        </div>
+    </div>    
+</body>
+</html>
