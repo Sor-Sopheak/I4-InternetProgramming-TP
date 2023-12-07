@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Book Detail</title>
+    <style>
+        .v_container{
+            border: 5px solid black;
+            height: 1200px;
+            width: 1000px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 30px;
+        }
+        .v_nav{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            background-color: #19334d;
+            color: rgb(241, 252, 252);
+            padding: 50px;
+        }
+        .v_body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            margin: 50px;
+        }
+
+        @media screen and (max-width: 992px) {
+            .v_nav {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                flex-direction: column;
+                background-color: #1a001a;
+                color:rgb(241, 252, 252);
+                padding: 50px;
+            }
+            .v_body{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                flex-direction: column;
+                margin: 50px;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            .v_nav{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                flex-direction: column;
+                background-color: #696969;
+                padding: 50px;
+            }
+            .v_body{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                margin: 50px;
+            }
+        }
+
+    </style>
+</head>
+<body class="v_body">
+    <div id="demo"></div>
+
+    <script>
+        const demo = document.getElementById("demo");
+        const values = window.location.search;
+        const params = new URLSearchParams(values);
+
+        const id = params.get("id");
+
+        fetch(`https://jsonplaceholder.typicode.com/photos/${id}`)
+        .then(async (res) => {
+            const book = await res.json();
+            demo.innerHTML = `
+            <div class="v_container">
+                <div class="v_nav">
+                    <h1>${book.title}</h1>
+                    <p>${book.id}</p>
+                    <p>Resize the browser to see that this page is responsive by the way.</p>
+                </div>
+                <div class="v_body">
+                    <h3>${book.id}</h3>
+                    <img src="${book.thumbnailUrl}">
+                </div>
+            </div>
+                `;
+        }).catch((err) => {
+            console.log(err);
+        })
+    </script>
+</body>
+</html>

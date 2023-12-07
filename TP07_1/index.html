@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity Suggestion</title>
+    <link href='https://fonts.googleapis.com/css?family=Aladin' rel='stylesheet'>
+    <link rel="stylesheet" href="style1.css">
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border: 5px solid black;
+            width: 50%;
+            height: 600px;
+            flex-direction: column;
+        }
+
+        h1, button{
+            font-family: 'Aladin';
+        }
+        h1{
+            font-size: 50px;
+        }
+
+        button{
+            font-size: 20px;
+            color: #fff;
+            background-color: rgb(64, 133, 244);
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        #activity{
+            font-weight: bold;
+            padding: 10px;
+        }
+        #todo_activity{
+            width: auto;
+            height: auto;
+            background-color: rgb(233, 249, 249);
+            margin-top: 10px;
+            /* font-size: 20px; */
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            border: 1px solid rgb(208, 207, 207);
+            border-radius:10px;
+            padding: 10px;
+            /* padding: 10px 50px 50px 50px; */
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image">
+            <img src="https://th.bing.com/th/id/R.ee07ce5d1a961d2dd3ee8e67d96c57e9?rik=FU76EpqUxqcznA&pid=ImgRaw&r=0" widt="100" height="100" alt="bore emoji" class="img">
+            <h1>Are you boring?</h1>
+        </div>
+        <button onclick="getAnActivity()">Tell me what to do</button>
+        <div id="todo_activity" hidden>
+            <div id="activity"></div>
+            <div id="type"></div>
+            <div id="participants"></div>
+            <div id="price"></div>
+            <div id="link"></div>
+        </div>
+    </div>
+
+    <script>
+        const typeEle = document.getElementById("type");
+        const participantsEle = document.getElementById("participants");
+        const priceEle = document.getElementById("price");
+        const linkEle = document.getElementById("link");
+        const activityName = document.getElementById("activity");
+
+        function getAnActivity(){
+            activityName.innerHTML = "";
+            typeEle.innerHTML = "";
+            participantsEle.innerHTML = "";
+            priceEle.innerHTML = "";
+            linkEle.innerHTML = "";
+            document.getElementById("todo_activity").hidden = false;
+
+            fetch("https://www.boredapi.com/api/activity")
+                .then(async (res) => {
+                    const data = await res.json();
+                    activityName.innerHTML = data['activity']
+                    typeEle.innerHTML = `<div id="type">
+                                            <img src="https://cdn-icons-png.flaticon.com/512/7991/7991247.png" width="25px" height="27px"/>
+                                            Type: ${data.type}
+                                        </div>`;
+                    participantsEle.innerHTML = `<div id="participants">
+                                                    <img src="https://cdn-icons-png.flaticon.com/512/8484/8484060.png" width="25px" height="27px"/>
+                                                    Participant: ${data.participants}
+                                                </div>`; 
+                    priceEle.innerHTML =`<div id="price">
+                                            <img src="https://img.icons8.com/fluency/256/cheap-2.png" width="25px" height="27px"/>
+                                            Price: ${data.price}
+                                        </div>`; 
+                    if (data.link == "") {
+                        linkEle.innerHTML = "";
+                    } else {
+                        linkEle.innerHTML = `<div id="link">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2985/2985013.png" width="25px" height="27px"/>
+                        Link: ${data.link}
+                    </div>`;
+                    }
+                    
+                    console.log('activity: ', res);
+                }).catch((err) => {
+                    console.log(err);
+                })
+        }
+    </script>
+</body>
+</html>

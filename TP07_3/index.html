@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store</title>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 50px;
+        }
+        .wrapper{
+            border: 5px solid;
+            width: auto;
+            display: flex;
+        }
+        .add_book {
+            margin: 5px;
+            width: 200px;
+            border-radius: 5px;
+            background-color: rgb(215, 216, 218);
+            padding: 20px;
+        }
+        .add_book p{
+            margin: 0px;
+            margin-top: 10px;
+        }
+        .add_book button {
+            background: rgb(215, 216, 218);
+            border-radius: 2px;
+            margin-top: 5px;
+            width: fit-content;
+            border: 1px solid rgb(113, 111, 111);
+            cursor: pointer;
+        }
+        #list_book{
+            display: grid;
+            background-color: rgb(215, 216, 218);
+            width: auto;
+            height: 700px;
+            grid-template-columns: 200px 200px 200px 200px;
+            padding: 10px;
+            overflow-y: scroll;
+        }
+        .display{
+            width: auto;
+            margin: 2px;
+            padding: 50px 10px 2px 2px;
+            background-color: rgb(241, 252, 252);
+        }
+        .v_container{
+            border: 5px solid black;
+            height: 1200px;
+            width: 1000px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size: 30px;
+        }
+        .v_nav{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            background-color: #19334d;
+            color: rgb(241, 252, 252);
+            padding: 50px;
+        }
+        .v_body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+            margin: 50px;
+        }
+
+        @media screen and (max-width: 992px) {
+            .v_nav {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                flex-direction: column;
+                background-color: #1a001a;
+                color:rgb(241, 252, 252);
+                padding: 50px;
+            }
+            .v_body{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                flex-direction: column;
+                margin: 50px;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            .v_nav{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                flex-direction: column;
+                background-color: #696969;
+                padding: 50px;
+            }
+            .v_body{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                margin: 50px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="add_book">
+            <p>Name:</p>
+            <input type="text" id="name" placeholder="c programming">
+
+            <p>Catagory:</p>
+            <input type="text" id="category" placeholder="coding">
+            
+            <p>Price:</p>
+            <input type="text" id="price" placeholder="1000 riel"><br>
+
+            <button id="add">Add</button>
+        </div>
+
+        <div id="list_book"></div>
+    </div>
+    <script>
+        function addBook(){
+
+        fetch(`https://jsonplaceholder.typicode.com/photos`)
+        .then((response) => {
+            return response.json();
+        })
+        .then((myJson) => {
+            let output = "";
+
+            myJson.map(function(photo){
+                output += `
+                    <div class="display">
+                        <img src="${photo.thumbnailUrl}"}
+                        <div class="content">
+                            <p>${photo.title}</p>
+                            <p>AlbumId: ${photo.albumId} riel</p>
+                            <p>Category: ${photo.id}</p>
+                            <a href="./detail?id=${photo.id}" target="_blank">see</a>                
+                        </div>
+                    </div>
+                `;
+
+                const seeUrl = photo['url'];
+                const searchParams = new URLSearchParams(seeUrl);
+
+                console.log(searchParams.get('url') == "${photo.url}");
+            });
+                document.getElementById('list_book').innerHTML = output;
+                console.log(myJson);
+            }).catch((err) => {
+                console.log(err);
+        });
+        } 
+
+        addBook();
+    </script>
+    <!-- <script src="script5.js"></script> -->
+</body>
+</html>
