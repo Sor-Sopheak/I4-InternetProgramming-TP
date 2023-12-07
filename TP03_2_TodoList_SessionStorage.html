@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style2.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <title>TP03_2_TodoList_SessionStorage</title>
+</head>
+<body>
+    <div class="wrapper">
+        <h2 class="header">To-do List SessionStorage</h2>
+        <div class="row">
+            <div class="col">
+                <p>Task Title</p>
+                <input type="text"placeholder="Title" id="title">
+            </div>
+            <div class="col">
+                <p>Assingnee</p>
+                <input type="text" placeholder="John" id="assingnee">
+            </div>
+            <div class="col">
+                <p>DateLine</p>
+                <input type="Date" id="date">
+            </div>
+            <div class="col">
+                <button class="button" id="addButton" onclick="addNewTask()">Add</button>
+            </div>
+        </div>
+        <div id="list_wrapper">
+            
+        </div>
+    </div>
+    <script src="script2.js"></script>
+</body>
+</html>
