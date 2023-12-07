@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP06.1: Pagination (infinite scroll)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-[700px] h-[80vh] p-5 absolute top-[50%] left-[50%] border-4 border-black shadow-lg shadow-black translate-x-[-50%] translate-y-[-50%]">
+        <div class="h-full overflow-y-scroll border-x-8 bg-gray-100" id="scroller"></div>
+    </div>
+    <script>
+        let scrollerEle = document.getElementById("scroller");
+
+        let pageNum = 0;
+        let dataLoading = false;
+        var dataOut = "";
+
+        function fetchAPI(page) {
+        dataLoading = true;
+        fetch(`https://api.instantwebtools.net/v1/passenger?page=${page}&size=15`)
+            .then(async (res) => {
+            let dataInfo = await res.json();
+            dataOut += `
+                <div class="text-5xl px-2">${page + 1}</div>
+            `;
+
+            dataInfo.data.forEach(element => {
+                dataOut += `
+                <div class="w-full h-[80px] border-2 rounded-sm py-2 bg-white">
+                    <div class="font-bold">✈️ : ${element.airline[0].name} - ${element.airline[0].country}</div>
+                    <div>😊 : ${element.name}</div>
+                </div>
+                `
+            });
+            scrollerEle.innerHTML = dataOut;
+            pageNum++;
+            dataLoading = false;
+            })
+            .then(() => {
+            scrollerEle.addEventListener("scroll", () => {
+                const { scrollTop, clientHeight, scrollHeight } = scrollerEle;
+                if ((clientHeight + scrollTop) >= (scrollHeight * 0.95)) {
+                if (!dataLoading) {
+                    fetchAPI(pageNum);
+                }
+                }
+            });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        }
+
+        fetchAPI(pageNum);
+    </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP06.3: List and Viewer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alkatra&family=Itim&family=Jaldi&family=Jolly+Lodger&display=swap');
+        .JollyLodgerFont{
+            font-family: 'Jolly Lodger', cursive;
+        }
+    </style>
+</head>
+<body>
+    <div class="w-[1000px] absolute left-[50%] translate-x-[-50%] translate-y-[10%] py-10 border-8 border-black shadow-lg shadow-gray-700">
+        <h1 class="JollyLodgerFont text-8xl text-center mb-6">Find your favorite 🥂?</h1>
+        <div class="flex gap-2 mx-auto justify-center">
+          <div class="w-[400px] h-[700px] p-2 border-2 rounded-lg">
+            <div class="h-full rounded-lg overflow-y-scroll" id="scroller">
+              
+            </div>
+          </div>
+          <div class="w-[400px] h-[700px] border-2 rounded-lg overflow-y-auto p-6"
+            id="view">
+              <p class="text-4xl font-bold text-center">Click on thing you want to view a detail</p>
+          </div>
+        </div>
+      </div>
+
+    <script>
+        let scrollerEle = document.getElementById("scroller");
+        let view = document.getElementById("view");
+
+        let pageNum = 1;
+        let dataLoading = false;
+
+        var favoriteThings = localStorage.getItem("favoriteThings") != null ? JSON.parse(localStorage.getItem("favoriteThings")) : [];
+
+        function displayAPage(dataAPage) {
+          dataAPage.forEach(element => {
+            scrollerEle.innerHTML += `
+            <button class="w-[97%] flex gap-2 items-center border-2 p-2 rounded-lg bg-white mr-2 mb-2 something"
+              onclick="viewDetail(${element.id})">
+              <p class="text-[2rem]">🍻</p>
+              <div class="shorten text-left">
+                <h3 class="font-bold">${element.name}</h3>
+                <p class="w-64 truncate overflow-ellipsis">${element.description}</p>
+              </div>
+            </button>
+            `
+          });
+        }
+
+        function viewDetail(id) {
+          for (let pNum of favoriteThings) {
+            for (let ele of pNum) {
+              if (ele.id == id) {
+                view.innerHTML = `
+                  <center>
+                    <img src="${ele.image_url}" class="my-6" alt="">
+                    <h3 class="font-bold">${ele.name}</h3>
+                    <p class="mb-4">${ele.first_brewed}</p>
+                    <p class="font-[500] mb-4">${ele.description}</p>
+                    <hr>
+                    <p class="font-medium mt-4">Contributor</p>
+                    <p class="mb-4 font-medium text-[1.2rem]">Sam Mason</p>
+                  </center>
+                `
+                break;
+              }
+            }
+          }
+          
+        }
+
+        function fetchDataFromLocal(page) {
+          displayAPage(favoriteThings[page]);
+        }
+
+        function fetchData(page) {
+          // scrollerEle.innerHTML += ` <div class="font-bold text-[1.5rem] px-2">${page}</div>`;
+          pageNum > favoriteThings.length ? fetchAPI(page) : fetchDataFromLocal(page-1);
+          pageNum++;
+        }
+
+        function fetchAPI(page) {
+          dataLoading = true;
+          fetch(`https://api.punkapi.com/v2/beers?page=${page}&per_page=15`)
+            .then(async (res) => {
+              let datas = await res.json();
+              favoriteThings.push(datas);
+              saveToLocalstorage(favoriteThings);
+              displayAPage(datas);
+              dataLoading = false;
+            })
+            .catch((err) => {
+              alert(err);
+            });
+        }
+
+        const saveToLocalstorage = (data) => {
+          localStorage.setItem("favoriteThings", JSON.stringify(data));
+        }
+
+
+        fetchData(pageNum);
+
+        scrollerEle.addEventListener("scroll", () => {
+          const { scrollTop, clientHeight, scrollHeight } = scrollerEle;
+          if ((clientHeight + scrollTop) >= (scrollHeight * 0.95)) {
+            if (!dataLoading) {
+              fetchData(pageNum);
+            }
+          }
+        });
+    </script>
+</body>
+</html>

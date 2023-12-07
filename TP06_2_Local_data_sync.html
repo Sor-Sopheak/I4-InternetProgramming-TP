@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TP06.2: Local data sync</title>
+  <script src="tailwindcss.js"></script>
+</head>
+
+<body class="flex justify-center">
+  <div class="w-[700px] h-[80vh] p-5 absolute top-[50%] left-[50%] border-4 border-black shadow-lg shadow-black translate-x-[-50%] translate-y-[-50%]">
+    <div id="pagenum" class="w-fit h-fit p-5 text-5xl"></div>
+    <div id="scrollable-wrapper" class="h-[80%] overflow-y-scroll border-x-8 bg-gray-100">
+    </div>
+  </div>
+ 
+  <script>
+    var scrollerEle = document.getElementById("scrollable-wrapper");
+    var pageNum = 0
+    var local = window.localStorage
+
+    var loading = false;
+ 
+    function fetchAPI(pageNum) {
+      return fetch(`https://api.instantwebtools.net/v1/passenger?page=${pageNum}&size=15`)
+    }
+
+    function onFetch() {
+      loading = true;
+      fetchAPI(pageNum).then(async(res) => {
+        let data = await res.json();
+        let info = data.data
+        local.setItem(JSON.stringify(pageNum), JSON.stringify(info))
+        info.forEach(element => {
+            render(element)
+        });
+        loading = false;
+        pageNum++;
+        local.setItem("pageNum", JSON.stringify(pageNum))
+        document.getElementById("pagenum").textContent = pageNum
+      });
+    }
+
+    function render(element) {
+      scrollerEle.innerHTML += `
+            <div id="info" class="w-full h-[80px] border-4 rounded-sm py-2 bg-white">
+                <div class="airline font-bold">✈️:${element.airline[0].name} - ${element.airline[0].country}</div>
+                <div class="passenger">👨:${element.name}</div>
+            </div>
+            `
+    }
+
+    function checkStorage(){
+      pageNum = JSON.parse(local.getItem("pageNum"))
+      if (pageNum != null){
+        for(let i = 0; i<pageNum; i++){
+          let localEl = JSON.parse(local.getItem(i))
+          localEl.forEach((el)=>{
+            render(el)
+          })
+        }
+        document.getElementById("pagenum").textContent = pageNum
+        return false
+      }
+      else{
+        pageNum = 0
+        return true;
+      }
+    }
+ 
+    scrollerEle.addEventListener("scroll", (event) => {
+      if (scrollerEle.scrollTop + scrollerEle.clientHeight >= (scrollerEle.scrollHeight * 0.95)) {
+        if (!loading) {
+          onFetch();
+        }
+      }
+    });
+
+    checkStorage()
+    if(checkStorage()){
+      onFetch()
+
+    }
+  </script>
+</body>
+ 
+</html>
