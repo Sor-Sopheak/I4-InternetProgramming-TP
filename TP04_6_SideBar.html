@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP04_6_SideBar</title>
+    <script src="https://cdn.tailwindcss.com "></script>
+    <script src="https://kit.fontawesome.com/57e9b76792.js"></script>
+</head>
+<body>
+    <div class="btn w-[1280px] h-screen border-8 bg-gray-200 border-black shadow-md shadow-black pl-2 pt-2 pb-10 pr-10 m-auto">
+        <div class="btnNav float-right m-10">
+            <button class="openbtn" onclick="openNav()">
+                <i class="fa fa-bars text-sky-500 text-7xl hover:text-blue-300 active:text-blue-300"></i>
+            </button>
+        </div>
+        <div id="mySideBar" class="sideBar bg-white w-[500px] h-full flex flex-col overflow-x-hidden">
+            <div class="font-bold flex justify-between p-10 pb-10">
+                <h1 class="text-5xl">SIDE-BAR</h1>
+                <a href="javascript:void(0)" class="closebtn text-5xl text-red-500" onclick="closeNav()">×</a>
+            </div>
+            <div class="text-2xl m-5 space-y-9 text-gray-500 p-5">
+                <div>
+                    <a href="#">Home</a>
+                </div>
+                <div>
+                    <a href="#">About</a>
+                </div>    
+                <div>
+                    <a href="#">Projects</a>
+                </div>
+                <div>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+            <div class="space-x-5 text-2xl p-10 mt-auto flex justify-center items-center">
+                <div class="">
+                    <a href="#">
+                        <i class="fab fa-facebook text-sky-500"></i>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <i class="fab fa-twitter text-sky-500"></i>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <i class="fa fa-behance text-sky-500"></i>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <i class="fab fa-linkedin text-sky-500"></i>
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <i class="fa fa-diamond text-sky-500"></i>
+                    </a>
+                </div>   
+            </div> 
+        </div>    
+    </div>
+
+    <script>
+        function openNav(){
+            document.getElementById("mySideBar").style.width = "500px";
+            document.getElementById("btnNav").style.marginLeft = "500px";
+        }
+
+        function closeNav(){
+            document.getElementById("mySideBar").style.width = "0px";
+            document.getElementById("btnNav").style.marginLeft = "0px";
+        }
+    </script>
+</body>
+</html>

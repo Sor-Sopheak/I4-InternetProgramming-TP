@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP04_2_ResponsiveMenu</title>
+    <script src="https://cdn.tailwindcss.com "></script>
+</head>
+
+<body>
+    <div class="lg:w-full h-auto border-8 bg-gray-200 border-black shadow-md shadow-black p-20 md:w-[786px] md:flex md:flex-col md:items-center md:justify-center">
+        <div>
+            <!-- header -->
+            <div class="flex flex-col items-center justify-center">
+                <h1 class="tracking-widest font-sans font-bold text-7xl text-indigo-900">Our Menu</h1>
+                <p class="border-b-8 border-yellow-500 w-[170px] p-4 "></p>
+            </div>
+            <!-- button -->
+            <div class="btn-container flex lg:flex-row items-center lg:justify-center mt-10">
+                <button id="all" class="menu-btn text-lg border-2 border-l-yellow-500 border-b-gray-500 border-r-slate-600 border-t-yellow-500 rounded-lg m-5 p-1 lg:pl-5 lg:pr-5 shadow-xl">All</button>
+                <button id="breakfast" class="menu-btn text-lg border-2 rounded-lg border-l-yellow-500 border-b-gray-500 border-r-slate-600 border-t-yellow-500 m-5 p-1 lg:pl-5 lg:pr-5 shadow-xl">Breakfast</button>
+                <button id="lunch" class="menu-btn text-lg border-2 rounded-lg border-l-yellow-500 border-b-gray-500 border-r-slate-600 border-t-yellow-500 m-5 p-1 lg:pl-5 lg:pr-5 shadow-xl">Lunch</button>
+                <button id="shakes" class="menu-btn text-lg border-2 rounded-lg border-l-yellow-500 border-b-gray-500 border-r-slate-600 border-t-yellow-500 m-5 p-1 lg:pl-5 lg:pr-5 shadow-xl">Shakes</button>
+                <button id="dinner" class="menu-btn text-lg border-2 rounded-lg border-l-yellow-500 border-b-gray-500 border-r-slate-600 border-t-yellow-500 m-5 p-1 lg:pl-5 lg:pr-5 shadow-xl">Dinner</button>
+            </div>
+        </div>
+
+        <div class="lg:flex lg:items-center lg:justify-center lg:w-full md:m-9">
+            <!-- content -->
+            <div class="m-10 lg:w-11/12 lg:border-none md:w-[600px]">
+                <!-- Pancakes -->
+                <div class="lg:grid lg:grid-rows-3 lg:grid-flow-col lg:gap-4 lg:m-10 lg:p-7">
+                    <div class="lg:row-span-3 md:flex md:items-center md:justify-center">
+                        <img class="lg:w-[600px] md:w-[650px] md:h-[350px] border-4 rounded-xl border-yellow-500 object-cover h-[350px]" src="https://loveincorporated.blob.core.windows.net/contentimages/main/e4618313-7bd1-42af-9b16-9add2e0e8533-7-vegan-pancakes.jpg" alt="butter milk pancake">
+                    </div>
+                    <div class="flex items-center justify-between lg:col-span-2 mt-5 mb-4 border-dotted border-b-2 border-gray-400">
+                        <h2 class="font-bold tracking-[0.25em] text-[24px]">Buttermilk Pancakes</h2>
+                        <p class="font-bold text-yellow-500 tracking-[0.25em] text-[24px]">$15.99</p>
+                    </div>
+                    <div class="lg:row-span-2 lg:col-span-2 md:flex md:items-center">
+                        <p class="lg:mr-[20%] lg:mb-[10%] text-[24px] text-gray-500 mt-5 mb-5">I'm baby woke mlkshk wolf bitters live-edge blue bottle, hammock freegan copper mug whatever cold-pressed</p>
+                    </div>
+                </div>
+                <!-- dinner -->
+                <div class="lg:grid lg:grid-rows-3 lg:grid-flow-col lg:gap-4 lg:m-10 lg:p-7 lg:ml-[3%]">
+                    <div class="lg:row-span-3 md:flex md:items-center md:justify-center">
+                        <img class="lg:w-[600px] md:w-[650px] md:h-[350px] border-4 rounded-xl border-yellow-500 object-cover h-[350px]" src="https://ediblerenotahoe.com/wp-content/uploads/2020/06/web_ROYCE-IMG_5438.jpg" alt="diner double">
+                    </div>
+                    <div class="flex items-center justify-between lg:col-span-2 mt-5 mb-4 border-dotted border-b-2 border-gray-400 lg:ml-[2%]">
+                        <h2 class="font-bold tracking-[0.25em] text-[24px]">Diner Double</h2>
+                        <p class="font-bold text-yellow-500 tracking-[0.25em] text-[24px]">$13.99</p>
+                    </div>
+                    <div class="lg:row-span-2 lg:col-span-2 md:flex md:items-center">
+                        <p class="lg:mr-[20%] lg:mb-[10%] text-[24px] text-gray-500 mt-5 mb-5 lg:ml-[2%]">vaporware iPhone mumblecore selvage raw denim slow-carb leggings gochujang helvetica man braid jianbing. Marfa thundercats </p>
+                    </div>
+                </div>
+                <!-- milkshake -->
+                <div class="lg:grid lg:grid-rows-3 lg:grid-flow-col lg:gap-4 lg:m-10 lg:p-7 lg:mr-[5%]">
+                    <div class="lg:row-span-3 md:flex md:items-center md:justify-center">
+                        <img class="lg:w-[600px] md:w-[650px] md:h-[350px] border-4 rounded-xl border-yellow-500 object-cover h-[350px]" src="https://i.pinimg.com/originals/ba/2b/ca/ba2bca3c6852b913b231330ca0a0bd0e.jpg" alt="godzilla milkshake">
+                    </div>
+                    <div class="flex items-center justify-between lg:col-span-2 mt-5 mb-4 border-dotted border-b-2 border-gray-400">
+                        <h2 class="font-bold tracking-[0.25em] text-[24px]">Godzilla Milkshake</h2>
+                        <p class="font-bold text-yellow-500 tracking-[0.25em] text-[24px]">$6.99</p>
+                    </div>
+                    <div class="lg:row-span-2 col-span-2 md:flex md:items-center">
+                        <p class="lg:mr-[20%] lg:mb-[10%] text-[24px] text-gray-500 mt-5 mb-5">ombucha chillwave fanny pack 3 wolf moon street art photo booth before they sold out organic viral. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
