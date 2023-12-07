@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw an uploaded image to a Canvas</title>
+</head>
+<style>
+    div{
+        padding: 0;
+        margin: auto;
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 400px;
+        height: 450px;
+        border: 5px solid gray;
+        background-color: gray;
+    }
+    canvas {
+        width: 400px;
+        height: 400px;
+        background-color: white;
+        border: 1px solid black;
+    }
+    p{
+        text-align: center;
+        top: 50%;
+        transform: translate(0, -50%);
+        color: white;
+    }
+</style>
+<body>
+    <div>
+        <canvas id="canvas"></canvas>
+        <p>Canvas 👻: Insert me an image please!
+        <input type="file" id="uploadedImgFile"/>
+        </p>
+        
+        <script>
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+
+                var reader = new FileReader();
+                var img = new Image();
+                
+            
+                const uploadImage = (event) => {
+                    reader.onload = () => {
+                        img.onload = () => {
+                            canvas.width = img.width;
+                            canvas.height = img.height;
+                            ctx.drawImage(img,0,0);
+                        };
+                        img.src = reader.result;
+                    };
+                    reader.readAsDataURL(event.target.files[0]);
+                };
+                const uploaded = document.getElementById("uploadedImgFile");
+                uploaded.addEventListener("change", uploadImage);
+        </script>
+    </div>
+</body>
+</html>

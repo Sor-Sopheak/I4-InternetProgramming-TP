@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw A Live Camera Video InTo Canvas</title>
+    <script type=""></script>
+</head>
+<style>
+    div{
+        padding: 0;
+        margin: auto;
+        display: block;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 400px;
+        height: 350px;
+        border: 5px solid gray;
+        background-color: gray;
+    }
+    video {
+        width: 400px;
+        height: 300px;
+        background-color: white;
+        border: 1px solid black;
+    }
+    p{
+        text-align: center;
+        top: 50%;
+        transform: translate(0, -50%);
+        color: white;
+    }
+</style>
+<body>
+    <div>
+        <video id="video"></video>
+        <p>Canvas 👻: Please show your face on me <br>
+            <button onclick="pause()" type="button">Pause</button> 
+        </p>
+    </div>
+        
+    <script>
+
+        var x = document.getElementById("video");
+
+        window.onload = function(){
+
+            navigator.mediaDevices.getUserMedia({
+                audio: false,
+                video: true
+            }).then((stream) => {
+                const video = document.querySelector('video');
+                video.srcObject = stream;
+                video.play();
+            }).catch((err) => {
+                console.log('navigator.MediaDevices.getUserMedia error: ', err.message, err.name);
+            });
+            
+            (function loop() {
+                if(playing){
+                    canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+                    setTimeout(loop, 1000 / 30); //drawing at 30fps
+                }
+            })();   
+        }
+
+        function pause(){
+            x.pause();
+        }
+
+    </script>
+</body>
+</html>
