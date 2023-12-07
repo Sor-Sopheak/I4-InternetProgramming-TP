@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Book</title>
+    <link rel="stylesheet" href="style5.css">
+</head>
+<body class="v_body">
+    <div id="demo"></div>
+
+    <script>
+        const demo = document.getElementById("demo");
+        const values = window.location.search;
+        const params = new URLSearchParams(values);
+
+        const id = params.get("id");
+
+        fetch(`https://jsonplaceholder.typicode.com/photos/${id}`)
+        .then(async (res) => {
+            const book = await res.json();
+            demo.innerHTML = `
+            <div class="v_container">
+                <div class="v_nav">
+                    <h1>${book.title}</h1>
+                    <p>${book.id}</p>
+                    <p>Resize the browser to see that this page is responsive by the way.</p>
+                </div>
+                <div class="v_body">
+                    <h3>${book.id}</h3>
+                    <img src="${book.thumbnailUrl}">
+                </div>
+            </div>
+                `;
+        }).catch((err) => {
+            console.log(err);
+        })
+    </script>
+</body>
+</html>

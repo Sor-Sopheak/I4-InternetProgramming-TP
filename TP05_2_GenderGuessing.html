@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gender Guessing</title>
+    <link href='https://fonts.googleapis.com/css?family=Aladin' rel='stylesheet'>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <div class="container">
+        <div class="image">
+            <img src="https://em-content.zobj.net/thumbs/120/apple/325/face-with-monocle_1f9d0.png" srcset="https://em-content.zobj.net/thumbs/240/apple/325/face-with-monocle_1f9d0.png 2x" alt="Face with Monocle on Apple iOS 15.4" width="200" height="200">
+            <h1 data-text="Gender">I Know you Gender</h1>
+        </div>
+        <div> 
+            <input type="text" id="inputName" placeholder="Tell me your name">
+            <button onclick="guess()">Guess</button>
+        </div>
+        <div class="info">
+            <div id="name"></div>
+            <div id="gender"></div>
+            <div id="probability"></div>
+        </div>
+    </div>
+    <script src="script2.js"></script>
+</body>
+</html>
